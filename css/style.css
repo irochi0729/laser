@@ -8,7 +8,7 @@ body{width: 100%;}
 
 
 
-.visual{position: relative;height: 100vh;background:url(/img/visual_bg.jpg) no-repeat center center / cover;width: 100%;}
+.visual{position: relative;height: 100vh;background:url(../img/visual_bg.jpg) no-repeat center center / cover;width: 100%;}
 .visual .logo{position: absolute;left: 80px;top: 100px;}
 .visual .text{position: absolute;left: 80px;bottom: 134px;}
 .visual .loading{position: absolute;right: 80px;bottom: 114px;}
@@ -18,8 +18,8 @@ body{width: 100%;}
 
 
 
-.s1{background:url(/img/s1_bg.jpg) no-repeat center center / cover;position: relative;}
-.s1 .s1_eff{background:url(/img/s1_eff.png) no-repeat center center / cover;position: absolute;width: 100%;height: 113%;}
+.s1{background:url(../img/s1_bg.jpg) no-repeat center center / cover;position: relative;}
+.s1 .s1_eff{background:url(../img/s1_eff.png) no-repeat center center / cover;position: absolute;width: 100%;height: 113%;}
 
 .s1 h1{display: none;
   color: #D1F800;
@@ -169,7 +169,7 @@ body{width: 100%;}
 
 
 
-.game{background:url(/img/s2_bg.jpg) no-repeat center / cover;padding: 200px 0;}
+.game{background:url(../img/s2_bg.jpg) no-repeat center / cover;padding: 200px 0;}
 
 .game h1{color: var(--color-color-primary, #6A25FF);
   text-align: center;
@@ -360,7 +360,7 @@ Vest Unit | VX-Core
 
 
 
-.s45_bg{background:url(/img/section4\,5_bg.jpg) no-repeat top / cover;}
+.s45_bg{background:url(../img/section4\,5_bg.jpg) no-repeat top / cover;}
 
 .review{padding: 200px 0;}
 
@@ -577,19 +577,19 @@ padding: 0 12px;
 @media screen and (max-width: 907px){
   .visual .text{width: 440px}
   
-  .game{background:url(/img/s2_bgm.jpg) no-repeat center / cover;padding: 200px 0;}
+  .game{background:url(../img/s2_bgm.jpg) no-repeat center / cover;padding: 200px 0;}
 }
 
 @media screen and (max-width: 767px){
   
   
-  .visual{background:url(/img/visual_bgt.jpg) no-repeat center center / cover;width: 100%;height: 100%;}
+  .visual{background:url(../img/visual_bgt.jpg) no-repeat center center / cover;width: 100%;height: 100%;}
   
   .visual .text{left: 21px;bottom: 215px;width: 343px;}
   .visual .loading{width: 178px;right: 40px;bottom: 56px;}
 
-  .s1{background:url(/img/s1_bgm.jpg) no-repeat center center / cover;position: relative;padding: 266px 0 140px 0;}
-  .s1 .s1_eff{background:url(/img/s1_effm.png) no-repeat center / cover;position: absolute;top: -50px;width: 100%;}
+  .s1{background:url(../img/s1_bgm.jpg) no-repeat center center / cover;position: relative;padding: 266px 0 140px 0;}
+  .s1 .s1_eff{background:url(../img/s1_effm.png) no-repeat center / cover;position: absolute;top: -50px;width: 100%;}
   .s1 h1{display: block;}
 
   .slider-container{padding: 0;}
@@ -702,7 +702,7 @@ letter-spacing: var(--Heading-letter-spacing, -0.2px);
 
 @media screen and (max-width: 360px){
 
-  .visual{background:url(/img/visual_bgm.jpg) no-repeat center center / cover;}
+  .visual{background:url(../img/visual_bgm.jpg) no-repeat center center / cover;}
   
   .s1{padding-bottom: 80px;}
   
