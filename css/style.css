@@ -509,9 +509,9 @@ letter-spacing: var(--Body-sm-letter-spacing, 0px);
 .map .map_wrap .map_con .num{display: flex;gap: 20px;justify-content: center;width: 100%;}
 .map .map_wrap .map_con .num {}
 .map .map_wrap .map_con .num .num_btn{border: 1px solid var(--color-border-hover-default, #DCDDDC);}
-.map .map_wrap .map_con .num .on{background: #D1F800;border: 0;}
+.map .map_wrap .map_con .num .on{background: #D1F800;border: 1px solid #D1F800;}
 
-.map .map_wrap .map_con .num .num_btn a{color: var(--color-text-text-base, #FFF);
+.map .map_wrap .map_con .num .num_btn a{color: var(--color-text-text-base, #FFF);display: block;
   text-align: center;
   
   /* body/md */
