@@ -8,7 +8,7 @@ body{width: 100%;}
 
 
 
-.visual{position: relative;height: 100vh;background:url(../img/visual_bg.jpg) no-repeat center center / cover;width: 100%; animation: visual 1s forwards;transform: scale(1.2);}
+.visual{position: relative;height: 100vh;background:url(../img/visual_bg.jpg) no-repeat center center / cover;width: 100%; animation: visual 3s forwards;transform: scale(1.2);}
 @keyframes visual {
   0% {transform: scale(1.2);}
   100% {transform: scale(1);}
