@@ -562,8 +562,8 @@ padding: 0 12px;
   .visual .text{left: 40px;width: 551px}
   .visual .loading{right: 40px;}
 
-  .map .map_wrap{justify-content: center;}
-  .map .map_wrap .map_img {opacity: 0.3;min-width: 100%;}
+  .map .map_wrap{justify-content: center;overflow: hidden;}
+  .map .map_wrap .map_img {opacity: 0.3;min-width: 580px;}
   .map .map_wrap .map_con{align-items: center;position: absolute;padding: 0 16px;}
 
   .map .map_wrap .map_con .store .store_btn{background: rgb(105, 36, 255, 0.5);}
