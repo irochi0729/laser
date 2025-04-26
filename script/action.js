@@ -1,38 +1,49 @@
 // action.js에 추가할 JavaScript 코드
 
 document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.getElementById('slider');
-    const pagination = document.getElementById('pagination');
-    const cards = document.querySelectorAll('.card');
-    
-    let isDragging = false;
-    let startPosition = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let currentIndex = 1; // 시작은 2번째 카드(인덱스 1)가 중앙에 오도록
-    let animationID = 0;
-    
-    // 초기 슬라이더 위치 설정
-    function initSlider() {
-      // 카드 너비와 슬라이더 컨테이너 너비 계산
-      const cardWidth = cards[0].offsetWidth;
-      const containerWidth = slider.parentElement.offsetWidth;
-      
-      // 중앙으로 첫 번째 카드 위치 조정
-      const offset = (containerWidth - cardWidth) / 2;
-      currentTranslate = -(cardWidth + 80) * currentIndex + offset;
-      prevTranslate = currentTranslate;
-      
-      setSliderPosition();
-      updateActiveCard();
-      createPaginationDots();
+  const slider = document.getElementById('slider');
+  const pagination = document.getElementById('pagination');
+  const cards = document.querySelectorAll('.card');
+  
+  let isDragging = false;
+  let startPosition = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let currentIndex = 1; // 시작은 2번째 카드(인덱스 1)가 중앙에 오도록
+  let animationID = 0;
+  let autoSlideInterval;
+  
+  // 슬라이더 위치 설정
+  function setSliderPosition(transition = true) {
+    if (transition) {
+      slider.style.transition = 'transform 0.3s ease';
+    } else {
+      slider.style.transition = 'none';
     }
+    slider.style.transform = `translateX(${currentTranslate}px)`;
+  }
+  
+  // 초기 슬라이더 위치 설정
+  function initSlider() {
+    // 카드 너비와 슬라이더 컨테이너 너비 계산
+    const cardWidth = cards[0].offsetWidth;
+    const containerWidth = slider.parentElement.offsetWidth;
     
-
+    // 중앙으로 첫 번째 카드 위치 조정
+    const offset = (containerWidth - cardWidth) / 2;
+    currentTranslate = -(cardWidth + 80) * currentIndex + offset;
+    prevTranslate = currentTranslate;
     
-    // 페이지네이션 도트 생성
-// 페이지네이션 도트 생성
-function createPaginationDots() {
+    setSliderPosition(false);
+    updateActiveCard();
+    createPaginationDots();
+    
+    // 자동 슬라이드 재시작
+    resetAutoSlide();
+  }
+  
+  // 페이지네이션 도트 생성
+  function createPaginationDots() {
     // 기존 점들을 모두 제거
     pagination.innerHTML = '';
     
@@ -71,289 +82,170 @@ function createPaginationDots() {
       pagination.appendChild(dot);
     }
   }
-
-
-
-    // 특정 슬라이드로 이동
-    function goToSlide(index) {
+  
+  // 특정 슬라이드로 이동
+  function goToSlide(index, immediate = false) {
+    const totalSlides = cards.length;
+    
+    // 무한 루프를 위한 처리
+    if (index < 0) {
+      // 처음 카드 이전으로 이동하려 할 때
+      currentIndex = totalSlides - 1; // 맨 마지막 카드로 설정
+    } else if (index >= totalSlides) {
+      // 마지막 카드 이후로 이동하려 할 때
+      currentIndex = 0; // 맨 처음 카드로 설정
+    } else {
       currentIndex = index;
-      const cardWidth = cards[0].offsetWidth;
-      const containerWidth = slider.parentElement.offsetWidth;
-      const offset = (containerWidth - cardWidth) / 2;
-      
-      currentTranslate = -(cardWidth + 80) * currentIndex + offset;
-      prevTranslate = currentTranslate;
-      
-      setSliderPosition();
-      updateActiveCard();
-      updatePagination();
     }
     
-
-
-
-
-
-    // 슬라이더 위치 설정
-function setSliderPosition(transition = true) {
-  if (transition) {
-    slider.style.transition = 'transform 0.3s ease';
-  } else {
+    const cardWidth = cards[0].offsetWidth;
+    const containerWidth = slider.parentElement.offsetWidth;
+    const offset = (containerWidth - cardWidth) / 2;
+    
+    currentTranslate = -(cardWidth + 80) * currentIndex + offset;
+    prevTranslate = currentTranslate;
+    
+    setSliderPosition(!immediate);
+    updateActiveCard();
+    updatePagination();
+    
+    // 자동 슬라이드 재설정
+    resetAutoSlide();
+  }
+  
+  // 활성화된 카드 업데이트
+  function updateActiveCard() {
+    cards.forEach((card, index) => {
+      if (index === currentIndex) {
+        card.classList.add('card-active');
+        card.classList.remove('card-inactive');
+      } else {
+        card.classList.remove('card-active');
+        card.classList.add('card-inactive');
+      }
+    });
+  }
+  
+  // 페이지네이션 업데이트
+  function updatePagination() {
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+      // SVG 경로의 fill 속성 업데이트
+      const path = dot.querySelector('path');
+      if (path) {
+        path.setAttribute('fill', index === currentIndex ? '#D1F800' : '#fff');
+      }
+      
+      if (index === currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+  
+  // 애니메이션 시작
+  function animation() {
+    setSliderPosition();
+    if (isDragging) requestAnimationFrame(animation);
+  }
+  
+  // 터치/마우스 위치 가져오기
+  function getPositionX(event) {
+    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+  }
+  
+  // 드래그 시작 이벤트
+  function touchStart(event) {
+    isDragging = true;
+    startPosition = getPositionX(event);
+    animationID = requestAnimationFrame(animation);
     slider.style.transition = 'none';
-  }
-  slider.style.transform = `translateX(${currentTranslate}px)`;
-}
-
-// 특정 슬라이드로 이동
-function goToSlide(index, immediate = false) {
-  const totalSlides = cards.length;
-  
-  // 무한 루프를 위한 처리
-  if (index < 0) {
-    // 처음 카드 이전으로 이동하려 할 때
-    currentIndex = totalSlides - 1; // 맨 마지막 카드로 설정
-  } else if (index >= totalSlides) {
-    // 마지막 카드 이후로 이동하려 할 때
-    currentIndex = 0; // 맨 처음 카드로 설정
-  } else {
-    currentIndex = index;
+    
+    // 드래그 시작시 자동 슬라이드 일시 중지
+    clearInterval(autoSlideInterval);
   }
   
-  const cardWidth = cards[0].offsetWidth;
-  const containerWidth = slider.parentElement.offsetWidth;
-  const offset = (containerWidth - cardWidth) / 2;
-  
-  currentTranslate = -(cardWidth + 80) * currentIndex + offset;
-  prevTranslate = currentTranslate;
-  
-  setSliderPosition(!immediate);
-  updateActiveCard();
-  updatePagination();
-}
-
-// 드래그 종료 이벤트
-function touchEnd() {
-  isDragging = false;
-  cancelAnimationFrame(animationID);
-  
-  const cardWidth = cards[0].offsetWidth + 80; // 카드 너비 + gap
-  const movedBy = currentTranslate - prevTranslate;
-  
-  // 만약 드래그 거리가 충분히 크다면 다음/이전 카드로 이동
-  if (movedBy < -100) {
-    // 다음 카드로 이동 (무한 루프 처리)
-    currentIndex += 1;
-    if (currentIndex >= cards.length) {
-      currentIndex = 0;
-    }
-  } else if (movedBy > 100) {
-    // 이전 카드로 이동 (무한 루프 처리)
-    currentIndex -= 1;
-    if (currentIndex < 0) {
-      currentIndex = cards.length - 1;
+  // 드래그 중 이벤트
+  function touchMove(event) {
+    if (isDragging) {
+      const currentPosition = getPositionX(event);
+      currentTranslate = prevTranslate + currentPosition - startPosition;
     }
   }
   
-  // 슬라이더를 현재 인덱스에 맞게 조정
-  const containerWidth = slider.parentElement.offsetWidth;
-  const offset = (containerWidth - cards[0].offsetWidth) / 2;
-  currentTranslate = -(cards[0].offsetWidth + 80) * currentIndex + offset;
+  // 드래그 종료 이벤트
+  function touchEnd() {
+    if (!isDragging) return;
+    
+    isDragging = false;
+    cancelAnimationFrame(animationID);
+    
+    const cardWidth = cards[0].offsetWidth + 80; // 카드 너비 + gap
+    const movedBy = currentTranslate - prevTranslate;
+    
+    // 만약 드래그 거리가 충분히 크다면 다음/이전 카드로 이동
+    if (movedBy < -100) {
+      goToSlide(currentIndex + 1);
+    } else if (movedBy > 100) {
+      goToSlide(currentIndex - 1);
+    } else {
+      // 충분히 이동하지 않았으면 원래 위치로 돌아감
+      goToSlide(currentIndex);
+    }
+    
+    // 드래그 종료 후 자동 슬라이드 재시작
+    resetAutoSlide();
+  }
   
-  prevTranslate = currentTranslate;
-  slider.style.transition = 'transform 0.3s ease';
-  setSliderPosition();
-  updateActiveCard();
-  updatePagination();
-}
-
-// 추가: 자동 슬라이딩 기능 (선택 사항)
-function startAutoSlide() {
-  // 5초마다 다음 슬라이드로 이동
-  return setInterval(() => {
-    goToSlide(currentIndex + 1);
-  }, 5000);
-}
-
-// 이벤트 리스너 등록 후 자동 슬라이드 시작 (선택 사항)
-let autoSlideInterval;
-
-slider.addEventListener('mousedown', (e) => {
-  touchStart(e);
-  // 슬라이더 상호작용 시 자동 슬라이드 멈춤
-  clearInterval(autoSlideInterval);
-});
-
-slider.addEventListener('touchstart', (e) => {
-  touchStart(e);
-  // 슬라이더 상호작용 시 자동 슬라이드 멈춤
-  clearInterval(autoSlideInterval);
-});
-
-slider.addEventListener('mousemove', touchMove);
-slider.addEventListener('touchmove', touchMove);
-
-slider.addEventListener('mouseup', () => {
-  touchEnd();
-  // 슬라이더 상호작용 끝난 후 자동 슬라이드 재시작
-  autoSlideInterval = startAutoSlide();
-});
-
-slider.addEventListener('touchend', () => {
-  touchEnd();
-  // 슬라이더 상호작용 끝난 후 자동 슬라이드 재시작
-  autoSlideInterval = startAutoSlide();
-});
-
-slider.addEventListener('mouseleave', () => {
-  if (isDragging) {
-    touchEnd();
-    // 슬라이더 상호작용 끝난 후 자동 슬라이드 재시작
+  // 자동 슬라이드 시작
+  function startAutoSlide() {
+    // 5초마다 다음 슬라이드로 이동
+    return setInterval(() => {
+      goToSlide(currentIndex + 1);
+    }, 5000);
+  }
+  
+  // 자동 슬라이드 재설정
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
     autoSlideInterval = startAutoSlide();
   }
-});
-
-// 화면 크기 변경 시 슬라이더 재조정
-window.addEventListener('resize', initSlider);
-
-// 초기화
-function initSlider() {
-  // 카드 너비와 슬라이더 컨테이너 너비 계산
-  const cardWidth = cards[0].offsetWidth;
-  const containerWidth = slider.parentElement.offsetWidth;
   
-  // 중앙으로 첫 번째 카드 위치 조정
-  const offset = (containerWidth - cardWidth) / 2;
-  currentTranslate = -(cardWidth + 80) * currentIndex + offset;
-  prevTranslate = currentTranslate;
-  
-  setSliderPosition(false);
-  updateActiveCard();
-  createPaginationDots();
-  
-  // 자동 슬라이드 시작 (선택 사항)
-  clearInterval(autoSlideInterval);
-  autoSlideInterval = startAutoSlide();
-}
-
-// 초기화 호출
-initSlider();
-
-
-
-
-
-
-    
-    // 활성화된 카드 업데이트
-    function updateActiveCard() {
-      cards.forEach((card, index) => {
-        if (index === currentIndex) {
-          card.classList.add('card-active');
-          card.classList.remove('card-inactive');
-        } else {
-          card.classList.remove('card-active');
-          card.classList.add('card-inactive');
-        }
-      });
-    }
-    
-    // 페이지네이션 업데이트
-    function updatePagination() {
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-          // SVG 경로의 fill 속성 업데이트
-          const path = dot.querySelector('path');
-          if (path) {
-            path.setAttribute('fill', index === currentIndex ? '#D1F800' : '#fff');
-          }
-          
-          if (index === currentIndex) {
-            dot.classList.add('active');
-          } else {
-            dot.classList.remove('active');
-          }
-        });
-      }
-
-  
-    
-    // 애니메이션 시작
-    function animation() {
-      setSliderPosition();
-      if (isDragging) requestAnimationFrame(animation);
-    }
-    
-    // 드래그 시작 이벤트
-    function touchStart(event) {
-      isDragging = true;
-      startPosition = getPositionX(event);
-      animationID = requestAnimationFrame(animation);
-      slider.style.transition = 'none';
-    }
-    
-    // 드래그 중 이벤트
-    function touchMove(event) {
-      if (isDragging) {
-        const currentPosition = getPositionX(event);
-        currentTranslate = prevTranslate + currentPosition - startPosition;
-      }
-    }
-    
-    // 드래그 종료 이벤트
-    function touchEnd() {
-      isDragging = false;
-      cancelAnimationFrame(animationID);
-      
-      const cardWidth = cards[0].offsetWidth + 80; // 카드 너비 + gap
-      const movedBy = currentTranslate - prevTranslate;
-      
-      // 만약 드래그 거리가 충분히 크다면 다음/이전 카드로 이동
-      if (movedBy < -100 && currentIndex < cards.length - 1) {
-        currentIndex += 1;
-      } else if (movedBy > 100 && currentIndex > 0) {
-        currentIndex -= 1;
-      }
-      
-      // 슬라이더를 현재 인덱스에 맞게 조정
-      const containerWidth = slider.parentElement.offsetWidth;
-      const offset = (containerWidth - cards[0].offsetWidth) / 2;
-      currentTranslate = -(cards[0].offsetWidth + 80) * currentIndex + offset;
-      
-      prevTranslate = currentTranslate;
-      slider.style.transition = 'transform 0.3s ease';
-      setSliderPosition();
-      updateActiveCard();
-      updatePagination();
-    }
-    
-    // 터치/마우스 위치 가져오기
-    function getPositionX(event) {
-      return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-    }
-    
-    // 이벤트 리스너 등록
-    slider.addEventListener('mousedown', touchStart);
-    slider.addEventListener('touchstart', touchStart);
-    
-    slider.addEventListener('mousemove', touchMove);
-    slider.addEventListener('touchmove', touchMove);
-    
-    slider.addEventListener('mouseup', touchEnd);
+  // 이벤트 리스너 등록
+  function addEventListeners() {
+    // 터치 이벤트 (모바일)
+    slider.addEventListener('touchstart', touchStart, { passive: true });
+    slider.addEventListener('touchmove', touchMove, { passive: true });
     slider.addEventListener('touchend', touchEnd);
+    
+    // 마우스 이벤트 (데스크탑)
+    slider.addEventListener('mousedown', touchStart);
+    slider.addEventListener('mousemove', touchMove);
+    slider.addEventListener('mouseup', touchEnd);
     slider.addEventListener('mouseleave', () => {
       if (isDragging) {
         touchEnd();
       }
     });
     
-    // 화면 크기 변경 시 슬라이더 재조정
+    // 화면 크기 변경 이벤트
     window.addEventListener('resize', initSlider);
     
-    // 초기화
-    initSlider();
-    
-
-  });
+    // 페이지가 백그라운드로 갔을 때 자동 슬라이드 중지, 포커스 돌아왔을 때 재시작
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearInterval(autoSlideInterval);
+      } else {
+        resetAutoSlide();
+      }
+    });
+  }
+  
+  // 초기화 및 이벤트 리스너 등록
+  addEventListeners();
+  initSlider();
+});
 
 
 
