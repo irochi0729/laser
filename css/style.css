@@ -93,6 +93,12 @@ body{width: 100%;}
   background-color: #D1F800;
 }
 
+.dot.active svg path {
+  stroke: #D1F800;
+  
+  fill: #D1F800;
+}
+
 .overlay-bg {
   transition: opacity 0.3s ease;
 }
