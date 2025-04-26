@@ -394,6 +394,13 @@ initSlider();
 
 
 
+  // $('.gcard').on('click', function () {
+  //   $(this).toggleClass('flipped');
+  // });
+
   $('.gcard').on('click', function () {
-    $(this).toggleClass('flipped');
+    const card = $(this);
+    window.requestAnimationFrame(function () {
+      card.toggleClass('flipped');
+    });
   });
