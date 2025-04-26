@@ -248,7 +248,7 @@ body{width: 100%;}
   align-items: center;
   
   transition: all 0.3s ease;
-  
+  z-index: 2;
 }
 
 .s2_overlay-text {
@@ -265,25 +265,9 @@ letter-spacing: var(--Body-lg-letter-spacing, 0);
   padding: 3rem;
   
   word-break: keep-all;
+  z-index: 3;
 }
 
-/* .s2_card-container:hover .s2_overlay {
-IGB Unit
-게임의 몰입도를 높이는 인터랙티브 센터
-
-Weapon Unit | TAG-G1
-정밀한 사각적 반응형 센서 탑재
-
-Vest Unit | VX-Core
-신체 피드백을 구현하는 스마트 아머
-
-  background: rgba(0, 0, 0, 0.7);
-  opacity: 1;
-}
-
-.s2_card-container:hover .s2_overlay-text {
-  transform: translateY(0);
-} */
 
 .gcard:hover .card-paths {
   fill: #6A25FF;
