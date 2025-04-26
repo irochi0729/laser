@@ -404,3 +404,98 @@ initSlider();
       card.toggleClass('flipped');
     });
   });
+
+  $(window).on('scroll', function() {
+    $('.gcard').each(function() {
+      var cardTop = $(this).offset().top;
+      var scrollTop = $(window).scrollTop();
+      var windowHeight = $(window).height();
+  
+      if (scrollTop + windowHeight > cardTop + 200) {
+        $(this).addClass('on');   // 화면에 보이면 on 추가
+      } else {
+        $(this).removeClass('on'); // 다시 화면 벗어나면 on 제거
+      }
+    });
+  });
+  
+
+  $(document).ready(function(){
+
+    var itemsPerPage = 6; // 한 페이지에 6개씩
+    var $storeItems = $('.store .store_btn');
+    var totalItems = $storeItems.length;
+    var totalPages = Math.ceil(totalItems / itemsPerPage);
+  
+    function showPage(page) {
+      $storeItems.hide();
+      var start = (page - 1) * itemsPerPage;
+      var end = start + itemsPerPage;
+      $storeItems.slice(start, end).show();
+  
+      $('.num_btn').removeClass('on');
+      $('.num_btn').eq(page-1).addClass('on');
+    }
+  
+    function resetSearch() {
+      $('.no-result').remove(); // "검색 결과 없음" 문구 제거
+      $('.search-input').val(''); // 검색창 비우기
+      $storeItems.show();
+      showPage(1);
+      $('.num').show();
+    }
+  
+    showPage(1); // 처음엔 1페이지 보여주기
+  
+    $('.num_btn a').click(function(e){
+      e.preventDefault();
+      var page = $(this).parent().index() + 1;
+      showPage(page);
+    });
+  
+    // 띄어쓰기 무시하고 검색하기 위해 문자열 정리 함수
+    function normalize(str) {
+      return str.toLowerCase().replace(/\s+/g, '');
+    }
+  
+    function doSearch() {
+      var keyword = normalize($('.search-input').val().trim());
+      $('.no-result').remove(); // 기존 no-result 문구 지우기
+  
+      if (keyword === '') {
+        resetSearch();
+        return;
+      }
+  
+      $storeItems.hide();
+      var matched = $storeItems.filter(function(){
+        return normalize($(this).text()).indexOf(keyword) > -1;
+      });
+  
+      if (matched.length > 0) {
+        matched.show();
+      } else {
+        $('.store').append('<li class="no-result" style="margin-top:20px;">검색 결과가 없습니다.</li>');
+      }
+  
+      $('.num').hide(); // 검색할 때 페이지 넘버 숨기기
+    }
+  
+    $('.search-icon a').click(function(e){
+      e.preventDefault();
+      doSearch();
+    });
+  
+    $('.search-input').keypress(function(e){
+      if(e.which == 13) {
+        doSearch();
+      }
+    });
+  
+    $('.search-input').on('input', function(){
+      if($(this).val().trim() === '') {
+        resetSearch();
+      }
+    });
+  
+  });

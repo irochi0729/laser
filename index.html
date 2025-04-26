@@ -6,13 +6,14 @@
     <title>레이저태그코리아</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <!-- <div class="bg">       
@@ -21,14 +22,25 @@
 
     <div class="visual">
         <!-- <img class="hero" src="img/visual/herosection.jpg" alt=""> -->
-        <a href="#"><img class="logo" src="img/visual/logo.png" alt=""></a>
-        <img class="text" src="img/visual/LASERARENA.png" alt="">
-        <img class="loading" src="img/visual_loading.png" alt="">
+          <a href="#" class="logobox">
+            <img class="logo" src="img/visual/logo.png" alt="">
+            <img class="text" src="img/visual/LASERARENA.png" alt="">
+          </a>
+        <!--<img class="loading" src="img/visual_loading.png" alt="">-->
     </div>
 
     <div class="s1">
     <div class="s1_eff"></div>
-    <h1>WEAPON LIST</h1>
+   <div class="title_box">
+      <h1 data-aos="fade-up-right"
+      data-aos-offset="300"
+      data-aos-duration="250">WEAPON LIST</h1>
+      <div class="bacode" data-aos="fade-up-right"
+      data-aos-offset="300"
+      data-aos-duration="550">
+        Gear up with the best arsenal
+      </div>
+   </div>
         <div class="slider-container">
             <div class="slider" id="slider">
                 <div class="card card-inactive">
@@ -275,9 +287,19 @@
     
 
     <div class="game">
-      <h1>GAME MODE</h1>
+      <div class="title_box">
+        <h1 data-aos="fade-up-right"
+        data-aos-offset="300"
+        data-aos-duration="250">GAME MODE</h1>
+        <div class="bacode" data-aos="fade-up-right"
+        data-aos-offset="300"
+        data-aos-duration="550">
+          Choose your challenge and begin
+        </div>
+      </div>
       <div class="game_wrap">
         <div class="gcard">
+          <img src="img/weapon/arrow_flip.png" alt="" class="icon_flip">
           <div class="s2_card-container do front">
             <div class="s2_image-container">
               <img src="img/game/virus.png" alt="Card image" class="card-image">
@@ -460,6 +482,7 @@
 
 
         <div class="gcard">
+          <img src="img/weapon/arrow_flip.png" alt="" class="icon_flip">
           <div class="s2_card-container front">
             <div class="s2_image-container">
               <img src="img/game/battle.png" alt="Card image" class="card-image">
@@ -642,6 +665,7 @@
 
 
         <div class="gcard">
+          <img src="img/weapon/arrow_flip.png" alt="" class="icon_flip">
           <div class="s2_card-container do front">
             <div class="s2_image-container">
               <img src="img/game/caos.png" alt="Card image" class="card-image">
@@ -824,6 +848,7 @@
 
 
         <div class="gcard">
+          <img src="img/weapon/arrow_flip.png" alt="" class="icon_flip">
           <div class="s2_card-container front">
             <div class="s2_image-container">
               <img src="img/game/team.png" alt="Card image" class="card-image">
@@ -1006,6 +1031,7 @@
 
 
         <div class="gcard">
+          <img src="img/weapon/arrow_flip.png" alt="" class="icon_flip">
           <div class="s2_card-container do front">
             <div class="s2_image-container">
               <img src="img/game/solo.png" alt="Card image" class="card-image">
@@ -1188,6 +1214,7 @@
 
 
         <div class="gcard">
+          <img src="img/weapon/arrow_flip.png" alt="" class="icon_flip">
           <div class="s2_card-container front">
             <div class="s2_image-container">
               <img src="img/game/oneshot.png" alt="Card image" class="card-image">
@@ -1372,6 +1399,7 @@
 
 
         <div class="gcard">
+          <img src="img/weapon/arrow_flip.png" alt="" class="icon_flip">
           <div class="s2_card-container do front">
             <div class="s2_image-container">
               <img src="img/game/boom.png" alt="Card image" class="card-image">
@@ -1558,6 +1586,7 @@
 
 
         <div class="gcard">
+          <img src="img/weapon/arrow_flip.png" alt="" class="icon_flip">
           <div class="s2_card-container front">
             <div class="s2_image-container">
               <img src="img/game/zombie.png" alt="Card image" class="card-image">
@@ -1746,7 +1775,17 @@
   <div class="s45_bg">
     <div class="review">
       
-      <h1>REVIEW</h1>
+      
+      <div class="title_box">
+        <h1 data-aos="fade-up-right"
+        data-aos-offset="300"
+        data-aos-duration="250">REVIEW</h1>
+        <div class="bacode" data-aos="fade-up-right"
+        data-aos-offset="300"
+        data-aos-duration="550">
+        What others are saying about us
+        </div>
+      </div>
       <div class="review_container">
         <div class="review_wrap">
           <div class="s3_rview_slide">
@@ -1774,8 +1813,12 @@
     <div class="map">
       
       <div class="map_title">
-        <h1>MAP</h1>
-        <p>전국 매장 안내</p>
+        <h1 data-aos="fade-up-right"
+        data-aos-offset="300"
+        data-aos-duration="250">MAP</h1>
+        <p data-aos="fade-up-right"
+        data-aos-offset="300"
+        data-aos-duration="550">전국 매장 안내</p>
       </div>
       <div class="map_wrap">
         <div class="map_img"><img src="img/map/map.png" alt=""></div>
@@ -1791,12 +1834,22 @@
             </div>
         </div>
         <ul  class="store">
-          <li class="store_btn"><a href="#">강남점</a></li>
-          <li class="store_btn"><a href="#">홍대점</a></li>
-          <li class="store_btn"><a href="#">여수 유월드</a></li>
-          <li class="store_btn"><a href="#">안산점</a></li>
-          <li class="store_btn"><a href="#">제주점</a></li>
-          <li class="store_btn"><a href="#">송도점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1154578326?placePath=%3Fentry%3Dpll%26from%3Dnx%26fromNxList%3Dtrue&placeSearchOption=entry%3Dpll%26fromNxList%3Dtrue%26x%3D127.107056%26y%3D37.272653&searchType=place" target="_blank">강남점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1556219900?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place&c=15.00,0,0,0,dh" target="_blank">홍대점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1503123069?placePath=%3Fentry%3Dpll%26from%3Dnx%26fromNxList%3Dtrue&placeSearchOption=entry%3Dpll%26fromNxList%3Dtrue%26x%3D127.107056%26y%3D37.272653&searchType=place" target="_blank">안산점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1334025065?placePath=%3Fentry%3Dpll%26from%3Dnx%26fromNxList%3Dtrue&placeSearchOption=entry%3Dpll%26fromNxList%3Dtrue%26x%3D127.107056%26y%3D37.272653&searchType=place" target="_blank">광안점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1079466300?placePath=%3Fentry%3Dpll%26from%3Dnx%26fromNxList%3Dtrue&placeSearchOption=entry%3Dpll%26fromNxList%3Dtrue%26x%3D127.107056%26y%3D37.272653&searchType=place" target="_blank">대구점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1751921982?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">전주 한옥마을점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1148975923?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">여수 유월드점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1320846410?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">대전점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1579684051?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">광주 충장로점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1822582493?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">포항점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1540924356?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">부산삼정타워</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1856996415?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">제주점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1604851493?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">울산점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1226777299?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">서면점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1182601867?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place" target="_blank">경주보문점</a></li>
+          <li class="store_btn"><a href="https://map.naver.com/p/search/%EB%A0%88%EC%9D%B4%EC%A0%80%EC%95%84%EB%A0%88%EB%82%98/place/1378306407?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place&c=15.00,0,0,0,dh" target="_blank">송도점</a></li>
         </ul>
 
         <ul class="num">
@@ -1813,6 +1866,9 @@
 
     <script src="script/jquery-3.7.1.js"></script>
     <script src="script/action.js"></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 </body>
 </html>
