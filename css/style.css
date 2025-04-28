@@ -566,15 +566,27 @@ padding: 0 12px;
 
 
 footer{padding: 0 64px 15px 0;display: flex;justify-content: end;}
-footer .ft{
+footer .ft{text-align: right;
   color: var(--color-color-primary, #ffffff);
   
   font-family: var(--Heading-font-family, Orbitron);
-  font-size: 16px;  
+  font-size: 1.6rem;  
   font-weight: var(--Heading-lg-font-weight, 900);
   line-height: var(--Heading-lg-line-height, 68px); /* 212.5% */
   letter-spacing: var(--Heading-letter-spacing, -0.2px);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media screen and (max-width: 1782px) {
@@ -586,6 +598,10 @@ footer .ft{
   
 
 }
+
+
+
+
 
 @media screen and (max-width: 1280px) {
   html{font-size: 8px;}
@@ -608,7 +624,12 @@ footer .ft{
   .search-input::placeholder {
     font-size: 16px;
   }
+
+  footer{padding: 0 32px 15px 0;}
 }
+
+
+
 
 
 @media screen and (max-width: 989px){
@@ -621,14 +642,22 @@ footer .ft{
   .map .map_wrap .map_con{align-items: center;position: absolute;padding: 0 16px;}
 
   .map .map_wrap .map_con .store .store_btn{background: rgb(105, 36, 255, 0.5);}
+
+  footer{padding: 0 16px 15px 0;}
   
 }
+
+
+
 
 @media screen and (max-width: 907px){
   .visual .text{width: 440px}
   
   .game{background:url(../img/s2_bgm.jpg) no-repeat center / cover;padding: 200px 0;}
 }
+
+
+
 
 @media screen and (max-width: 767px){
   
@@ -681,6 +710,12 @@ letter-spacing: var(--Body-xs-letter-spacing, 0px);word-break: keep-all;
   
 }
 
+
+
+
+
+
+
 @media screen and (max-width: 599px){
   .s1 h1{font-size: 40px;}
 
@@ -693,6 +728,10 @@ letter-spacing: var(--Body-xs-letter-spacing, 0px);word-break: keep-all;
   .s3_rview_slide img{width: 352px;height: 424px;}
   .gcard:nth-child(2n-1) .icon_flip {bottom: 13%;}
 }
+
+
+
+
 
 
 @media screen and (max-width: 490px){
@@ -747,12 +786,23 @@ letter-spacing: var(--Body-xs-letter-spacing, 0px);word-break: keep-all;
 
 
 
+
+
+
+
+
+
+
 @media screen and (max-width: 380px){
   .visual .logo{left: 21px;top: 40px;width: 28px;}
   .visual .text{left: 21px;bottom: 134px;width: 221px;}
   .visual .loading{width: 133px;right: 20px;bottom: 40px;}
   
 }
+
+
+
+
 
 
 @media screen and (max-width: 360px){
