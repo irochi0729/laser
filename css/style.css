@@ -568,6 +568,7 @@ padding: 0 12px;
 
 
 footer{padding: 0 64px 15px 64px;display: flex;flex-direction: column;align-items: end;gap: 25px;}
+
 footer .ft{text-align: right;
   color: var(--color-color-primary, #ffffff);
   
@@ -645,7 +646,7 @@ footer .ft{text-align: right;
 
   .map .map_wrap .map_con .store .store_btn{background: rgb(105, 36, 255, 0.5);}
 
-  footer{padding: 0 16px 15px 0;}
+  footer{padding: 0 16px 15px 16px;}
   
 }
 
@@ -783,6 +784,11 @@ letter-spacing: var(--Body-xs-letter-spacing, 0px);word-break: keep-all;
   letter-spacing: var(--Body-sm-letter-spacing, 0px);}
   
   .map .map_wrap .map_con{gap: 32px;}
+
+
+  footer{align-items: center;padding: 0 0 15px 0}
+  footer .ft{text-align: center;}
+
   
 }
 
